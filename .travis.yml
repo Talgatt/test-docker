@@ -3,5 +3,14 @@ services:
   - docker
 
 script:
-  - docker build -t mannydesignes/node .
-  - docker images mannydesignes/node
+  - docker build -t taldesigns/node .
+  - docker images taldesigns/node
+
+before_deploy:
+  - docker login -u <username> -p <userpassword>
+
+deploy:
+  provider: script
+  script: docker push taldesigns/node
+  on:
+    branch: master
